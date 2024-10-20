@@ -1,6 +1,6 @@
 # Pixel Studio - Pixel Art Creation and Editing Software
 
-Pixel House is an advanced pixel art creation and editing tool built using C++ with SFML (Simple and Fast Multimedia Library) for real-time graphics rendering and ImGui for a user-friendly interface. This software enables users to create pixel art on customizable grids and offers essential tools such as a color palette, eraser, and shadow rendering for precise pixel manipulation. The project is currently under development with ongoing improvements and feature additions.
+Pixel Studio is an advanced pixel art creation and editing tool built using C++ with SFML (Simple and Fast Multimedia Library) for real-time graphics rendering and ImGui for a user-friendly interface. This software enables users to create pixel art on customizable grids and offers essential tools such as a color palette, eraser, and shadow rendering for precise pixel manipulation. The project is currently under development with ongoing improvements and feature additions.
 
 ## Key Features
 - Customizable Grid Sizes: Users can select between different grid sizes (8x8, 16x16, 32x32, 64x64) to create pixel art projects of varying complexity.
