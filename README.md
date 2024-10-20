@@ -40,26 +40,26 @@ Follow these steps to set up and run Pixel House on your local machine:
 - ImGui: The project uses ImGui-SFML integration. Make sure to install ImGui and link it with SFML.
 
 ### Steps
-- Clone the repository:
+- 1 Clone the repository:
 
 ```bash
 git clone https://github.com/yourusername/PixelHouse.git
 cd PixelHouse
-cmake ..
-make
-./PixelHouse
 ```
 
-- Install dependencies
+- 2 Install dependencies
 (e.g., SFML, ImGui): Follow the instructions for setting up SFML and ImGui-SFML.
-Build the project using CMake:
-
+- 3 Build the project using CMake:
+```
 mkdir build
 cd build
 cmake ..
 make
-Run the application: After successful compilation, run the application using:
+```
+- 4 Run the application: After successful compilation, run the application using:
+```
 ./PixelHouse
+```
 
 ## Usage
 - Launch the application to open the main menu and choose the desired grid size.
