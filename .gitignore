@@ -9,7 +9,8 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 
-# Compiled macOS specific object files 
+# Compiled macOS files 
+*.dSYM
 *.o
 *.dylib
 *.out
