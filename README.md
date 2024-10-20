@@ -78,17 +78,26 @@ make
 - Contributions are welcome!
 If you'd like to help improve Pixel House, please fork the repository and submit a pull request.
 
-- Fork the project.
-- Create your feature branch:
+- 1 Fork the project.
+- 2 Create your feature branch:
+  
+```
 git checkout -b feature/AmazingFeature
+```
 
-- Commit your changes:
+3 - Commit your changes:
+
+```
 git commit -m 'Add some AmazingFeature'
+```
 
--Push to the branch:
+- 4 Push to the branch:
+
+```
 git push origin feature/AmazingFeature
+```
 
--Open a pull request.
+- 5 Open a pull request.
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
