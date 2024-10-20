@@ -42,8 +42,13 @@ Follow these steps to set up and run Pixel House on your local machine:
 ### Steps
 - Clone the repository:
 
+```bash
 git clone https://github.com/yourusername/PixelHouse.git
 cd PixelHouse
+cmake ..
+make
+./PixelHouse
+```
 
 - Install dependencies
 (e.g., SFML, ImGui): Follow the instructions for setting up SFML and ImGui-SFML.
