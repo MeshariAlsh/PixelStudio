@@ -43,7 +43,7 @@ Follow these steps to set up and run Pixel House on your local machine:
 - 1 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/PixelHouse.git
+git clone https://github.com/MeshariAlsh/PixelStudio.git
 cd PixelHouse
 ```
 
@@ -82,13 +82,13 @@ If you'd like to help improve Pixel House, please fork the repository and submit
 - 2 Create your feature branch:
   
 ```
-git checkout -b feature/AmazingFeature
+git checkout -b feature/YourAmazingFeature
 ```
 
 - 3 Commit your changes:
 
 ```
-git commit -m 'Add some AmazingFeature'
+git commit -m 'Add some YourAmazingFeature'
 ```
 
 - 4 Push to the branch:
