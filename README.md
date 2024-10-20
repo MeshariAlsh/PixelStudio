@@ -3,13 +3,13 @@
 Pixel House is an advanced pixel art creation and editing tool built using C++ with SFML (Simple and Fast Multimedia Library) for real-time graphics rendering and ImGui for a user-friendly interface. This software enables users to create pixel art on customizable grids and offers essential tools such as a color palette, eraser, and shadow rendering for precise pixel manipulation. The project is currently under development with ongoing improvements and feature additions.
 
 ## Key Features
-Customizable Grid Sizes: Users can select between different grid sizes (8x8, 16x16, 32x32, 64x64) to create pixel art projects of varying complexity.
-Color Palette: A fully interactive color picker that allows users to choose and apply colors to individual pixels within the grid.
-Eraser Tool: Provides functionality to remove colors from selected pixels to restore the original grid background.
-Eye Dropper Tool: Lets users select and apply a color from any pixel already placed in the grid.
-Shadow Rendering: Dynamic shadow rendering on the grid gives visual feedback of the mouse position and helps with accurate pixel selection.
-Real-time Interface: Powered by ImGui, the software offers a responsive and intuitive top panel for easy access to tools like the eraser and color picker.
-Responsive Grid and View Resizing: The grid and view dynamically adjust to window resizing while maintaining aspect ratios.
+- Customizable Grid Sizes: Users can select between different grid sizes (8x8, 16x16, 32x32, 64x64) to create pixel art projects of varying complexity.
+- Color Palette: A fully interactive color picker that allows users to choose and apply colors to individual pixels within the grid.
+- Eraser Tool: Provides functionality to remove colors from selected pixels to restore the original grid background.
+- Eye Dropper Tool: Lets users select and apply a color from any pixel already placed in the grid.
+- Shadow Rendering: Dynamic shadow rendering on the grid gives visual feedback of the mouse position and helps with accurate pixel selection.
+- Real-time Interface: Powered by ImGui, the software offers a responsive and intuitive top panel for easy access to tools like the eraser and color picker.
+- Responsive Grid and View Resizing: The grid and view dynamically adjust to window resizing while maintaining aspect ratios.
 
 ## Demo 
 Here's a screenshot of the application in action:
@@ -89,7 +89,7 @@ git push origin feature/AmazingFeature
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgments
-SFML for providing a powerful and simple multimedia library.
-ImGui-SFML for making the integration of GUI elements seamless.
-C++ for its performance and flexibility in creating real-time applications.
-CMake for simplifying the build process and ensuring cross-platform compatibility.
+- SFML for providing a powerful and simple multimedia library.
+- ImGui-SFML for making the integration of GUI elements seamless.
+- C++ for its performance and flexibility in creating real-time applications.
+- CMake for simplifying the build process and ensuring cross-platform compatibility.
