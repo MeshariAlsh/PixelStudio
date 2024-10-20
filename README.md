@@ -20,12 +20,12 @@ Here's a screenshot of the application in action:
 
 ## Technologies Used
 - C++: The core language used for implementing object-oriented design and efficient real-time processing.
-SFML: Used for graphics rendering and handling real-time events like mouse clicks and window resizing.
-ImGui: A powerful immediate-mode GUI framework that provides the intuitive interface for user interaction, such as color picking and tool selection.
-CMake: Used for managing the build process, ensuring cross-platform compatibility and easy project setup.
-Object-Oriented Programming (OOP): The project is structured around OOP principles, making it modular, maintainable, and scalable.
-How It Works
+- SFML: Used for graphics rendering and handling real-time events like mouse clicks and window resizing.
+- ImGui: A powerful immediate-mode GUI framework that provides the intuitive interface for user interaction, such as color picking and tool selection.
+- CMake: Used for managing the build process, ensuring cross-platform compatibility and easy project setup.
+- Object-Oriented Programming (OOP): The project is structured around OOP principles, making it modular, maintainable, and scalable.
 
+## How It Works
 - Main Menu: When the software starts, users are presented with a grid selection menu. They can choose from 8x8, 16x16, 32x32, or 64x64 grids, which determines the canvas size for pixel art.
 - Color and Tools: After selecting a grid, users can pick colors using the Color Picker and apply them to the grid. Tools such as the Eraser and Eye Dropper are accessible from the top panel.
 - Drawing and Editing: Users can click or drag the mouse to apply or erase colors on individual grid cells. Real-time shadow feedback helps with accurate pixel placement.
