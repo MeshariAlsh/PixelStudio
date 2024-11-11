@@ -51,13 +51,13 @@ sf::Color eyeDropper(Grid& activeGrid, sf::Vector2f& mousePosition, sf::Color& c
 // Set colour for appropriate cell colour
 void drawActiveGrid(Grid& grid, sf::Vector2f& mousePosition, sf::Color& currentColor) 
 {
-  grid.setCellColor(&mousePosition, currentColor);  // Set the cell color
+  grid.setCellColor(mousePosition, currentColor);  // Set the cell color
 }
 
 // Handle where to Render Shadow body according to the active grid rendered 
 void handleShadowDraw(Grid& activeGrid, sf::Vector2f& mousePosition, Shadow& shadow )
 {
-  shadow.setShadowPosition(&mousePosition, activeGrid.getGridSize(), activeGrid.getCells()); // Sets Shadow body to the cell nearst the mouse 
+  shadow.setShadowPosition(mousePosition, activeGrid.getGridSize(), activeGrid.getCells()); // Sets Shadow body to the cell nearst the mouse 
 }
 
 // Gets mouse coordinates relative to the window, converts it to vector float and returns it for later coordinate calculations

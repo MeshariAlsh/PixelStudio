@@ -1,10 +1,11 @@
 #include <SFML/Graphics.hpp> 
 #include "Grid.h"
+#include "utils.h"
 #include <iostream>
 #include <vector>
 
 
-/* This file will construct and render the grid(canvas). Furtheremore, destruct the objects created */
+/* This file will construct and render the grid(canvas). */
 
 Grid:: Grid( int column){
 
@@ -43,10 +44,12 @@ void Grid:: Draw (sf::RenderWindow& window)
       }
 }
 
-void Grid::setCellColor(sf::Vector2f* cellPosition, sf::Color& currentColor) {
+void Grid::setCellColor(sf::Vector2f& cellPosition, sf::Color& currentColor) {
     // Compute the row and column based on the cell position
-    int row = (cellPosition->x - 170.0f) / 15.0f;
-    int column = (cellPosition->y - 70.0f) / 15.0f;
+    int row;
+    int column;
+
+    MouseToCellCoords(cellPosition, row, column);
 
     // Bounds checking to make sure mouse is within grid limits
     if (row >= 0 && row < gridSize && column >= 0 && column < gridSize) {
@@ -87,7 +90,6 @@ sf::Color Grid:: setEyeDropper(sf::Vector2f& cellPosition, sf::Color& currentCol
    } 
 
    return sf::Color::White;
-
 
 };
 

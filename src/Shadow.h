@@ -13,7 +13,7 @@ class Shadow{
 
     void drawShadow(sf::RenderWindow& window);
 
-    void setShadowPosition(sf::Vector2f* mousePosition, int gridSize, std::vector<std::vector<sf::RectangleShape> > cells);
+    void setShadowPosition(sf::Vector2f& mousePosition, int gridSize, std::vector<std::vector<sf::RectangleShape> > cells);
 
     void setInsideBoundary();
 
