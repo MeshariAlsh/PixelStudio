@@ -23,6 +23,7 @@ set(SOURCE_FILES
     src/Palette.cpp
     src/Shadow.cpp
     src/MainMenu.cpp
+    src/utils.cpp
     src/imgui/imgui.cpp
     src/imgui/imgui_draw.cpp
     src/imgui/imgui_widgets.cpp

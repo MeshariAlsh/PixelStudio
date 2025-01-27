@@ -45,11 +45,12 @@ void Grid:: Draw (sf::RenderWindow& window)
 }
 
 void Grid::setCellColor(sf::Vector2f& cellPosition, sf::Color& currentColor) {
-    // Compute the row and column based on the cell position
+   
     int row;
     int column;
-
-    MouseToCellCoords(cellPosition, row, column);
+    
+    // Compute the row and column based on the cell position
+    utils::MouseToCellCoords(cellPosition, row, column);
 
     // Bounds checking to make sure mouse is within grid limits
     if (row >= 0 && row < gridSize && column >= 0 && column < gridSize) {
@@ -60,8 +61,11 @@ void Grid::setCellColor(sf::Vector2f& cellPosition, sf::Color& currentColor) {
 
 void Grid::setEraser(sf::Vector2f& cellPosition){
 
-  int row = (cellPosition.x - 170.0f) / 15.0f;
-  int column = (cellPosition.y - 70.0f) / 15.0f;
+  int row;
+  int column;
+    
+  // Compute the row and column based on the cell position
+  utils::MouseToCellCoords(cellPosition, row, column);
 
   // Bounds checking to make sure mouse is within grid limits
     if (row >= 0 && row < gridSize && column >= 0 && column < gridSize) {
@@ -79,8 +83,11 @@ void Grid::setEraser(sf::Vector2f& cellPosition){
 
 sf::Color Grid:: setEyeDropper(sf::Vector2f& cellPosition, sf::Color& currentColor){
 
-   int row = (cellPosition.x - 170.0f) / 15.0f ;
-   int column = (cellPosition.y - 70.0f) / 15.0f ;
+   int row;
+   int column;
+    
+   // Compute the row and column based on the cell position
+   utils::MouseToCellCoords(cellPosition, row, column);
 
    if (row >= 0 && row < gridSize && column >= 0 && column < gridSize) 
    {

@@ -6,6 +6,7 @@
 #include "Palette.h"
 #include "Shadow.h"
 #include "MainMenu.h"
+#include "utils.h"
 
 //sf::Vector2f coordinates where the view will center for each grid value
 static const sf::Vector2f GRID8x8_VIEW_COORDS = {245.0f, 145.0f};
@@ -27,47 +28,7 @@ static const float Y_POSITION_OF_MENU_RECT = 50.f;
 // Static view height
 static const float VIEW_HEIGHT = 512.0f;
 
-// Handles the when the widnow size is changed everthing rendered will remain the same ratio 
-void ResizeView(const sf::RenderWindow& window, sf::View& view)
-{
-  float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
-  view.setSize(VIEW_HEIGHT * aspectRatio, VIEW_HEIGHT);
-}
 
-// Erase any previous set colour on appropriate cell 
-void handlePaletteAndEraser(Grid& grid, sf::Vector2f& mousePosition)
-{
-  grid.setEraser(mousePosition);
-}
-
-// Set current colour to a selected cell colour
-sf::Color eyeDropper(Grid& activeGrid, sf::Vector2f& mousePosition, sf::Color& currentColor, Palette& palette)
-{
-  activeGrid.setEyeDropper(mousePosition, currentColor);
-  palette.setEyeDropperOff();
-  return currentColor;
-}
-
-// Set colour for appropriate cell colour
-void drawActiveGrid(Grid& grid, sf::Vector2f& mousePosition, sf::Color& currentColor) 
-{
-  grid.setCellColor(mousePosition, currentColor);  // Set the cell color
-}
-
-// Handle where to Render Shadow body according to the active grid rendered 
-void handleShadowDraw(Grid& activeGrid, sf::Vector2f& mousePosition, Shadow& shadow )
-{
-  shadow.setShadowPosition(mousePosition, activeGrid.getGridSize(), activeGrid.getCells()); // Sets Shadow body to the cell nearst the mouse 
-}
-
-// Gets mouse coordinates relative to the window, converts it to vector float and returns it for later coordinate calculations
-sf::Vector2f handleMousePosition(sf::Vector2f& MousePosition, sf::RenderWindow& window)
-{
-  sf::Vector2i Conversion_Position = sf::Mouse::getPosition(window); 
-  MousePosition = window.mapPixelToCoords(Conversion_Position);
-
-  return MousePosition;
-}
 
 
 int main() {
@@ -137,7 +98,7 @@ int main() {
        }
        if (sf::Event::Resized)
        {
-        ResizeView(window, view);
+        utils::ResizeView(window, view);
        }
        
        // Mouse Events
@@ -149,7 +110,7 @@ int main() {
             {
               
                //Handles Mouse position  
-               handleMousePosition(MousePosition,  window);
+               utils::handleMousePosition(MousePosition,  window);
 
                if (isMainMenuRendering == true)
                {
@@ -169,15 +130,15 @@ int main() {
               // For coloring, erasing, or copying the color of a single cell with a click 
                 if (palette.getIsEraserOn() == true)
                 {
-                  handlePaletteAndEraser(activeGrid, MousePosition);
+                  utils::handlePaletteAndEraser(activeGrid, MousePosition);
                 } 
                 if (palette.getIsEyeDropperrOn() == true && palette.getIsEraserOn() == false )
                 {
-                  eyeDropper( activeGrid ,MousePosition ,currentColor, palette);
+                  utils::eyeDropper( activeGrid ,MousePosition ,currentColor, palette);
                 }
                 else
                 {
-                   drawActiveGrid(activeGrid, MousePosition, currentColor);
+                   utils::drawActiveGrid(activeGrid, MousePosition, currentColor);
                 }
             }
          }
@@ -186,19 +147,19 @@ int main() {
          if (event.type == sf::Event::MouseMoved &&  isMainMenuRendering == false)
           {
             //Handles Mouse position 
-           handleMousePosition(MousePosition,  window);
+           utils::handleMousePosition(MousePosition,  window);
 
            // Handles the position where the shadow body will render
-            handleShadowDraw(activeGrid, MousePosition, shadow);
+            utils::handleShadowDraw(activeGrid, MousePosition, shadow);
             
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
               {
                 if (palette.getIsEraserOn() == true){
-                  handlePaletteAndEraser(activeGrid, MousePosition);
+                  utils::handlePaletteAndEraser(activeGrid, MousePosition);
                 } 
                 else
                 {
-                   drawActiveGrid(activeGrid, MousePosition, currentColor);
+                   utils::drawActiveGrid(activeGrid, MousePosition, currentColor);
                 }
               } 
               

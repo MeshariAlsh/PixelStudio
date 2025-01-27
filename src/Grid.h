@@ -31,7 +31,7 @@ class Grid {
     sf::Color setEyeDropper(sf::Vector2f& cellPosition, sf::Color& currentColor);
 
     // To set the colour of chosen cell 
-    void setCellColor(sf::Vector2f* cellPosition, sf::Color& currentColor);
+    void setCellColor(sf::Vector2f& cellPosition, sf::Color& currentColor);
     
     // Old useless function 
     void transferCellColor (sf::Vector2f* cellPosition, sf::Color currentColor);
