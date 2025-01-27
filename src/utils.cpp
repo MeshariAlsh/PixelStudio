@@ -7,29 +7,28 @@
 #include <iostream>
 #include <vector>
 #include "utils.h"
+#include "Settings.h"
 
 
 constexpr float X_OFFSET = 170.0f;
 constexpr float Y_OFFSET = 70.0f;
 constexpr float CELL_SIZE = 15.0f;
 
-// Static view height
-static const float VIEW_HEIGHT = 512.0f;
-
 // Compute the row and column based on the cell position
 namespace utils 
 {
+    // Converts the mouse coords to the correspondig grid cell position
     void MouseToCellCoords(sf::Vector2f& cellPosition, int& row, int& column)
     {
         row = (cellPosition.x - X_OFFSET) / CELL_SIZE;
         column = (cellPosition.y - Y_OFFSET) / CELL_SIZE;
     }
 
-    // Handles the when the widnow size is changed everthing rendered will remain the same ratio 
+    // Handles when the widnow size is changed everthing rendered will remain the same ratio 
     void ResizeView(const sf::RenderWindow& window, sf::View& view)
     {
         float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
-        view.setSize(VIEW_HEIGHT * aspectRatio, VIEW_HEIGHT);
+        view.setSize(Settings::VIEW_HEIGHT * aspectRatio, Settings::VIEW_HEIGHT);
     }
 
     // Erase any previous set colour on appropriate cell 

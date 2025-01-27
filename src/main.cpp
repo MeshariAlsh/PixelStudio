@@ -7,33 +7,12 @@
 #include "Shadow.h"
 #include "MainMenu.h"
 #include "utils.h"
-
-//sf::Vector2f coordinates where the view will center for each grid value
-static const sf::Vector2f GRID8x8_VIEW_COORDS = {245.0f, 145.0f};
-static const sf::Vector2f GRID16x16_VIEW_COORDS = {290.0f, 190.0f};
-static const sf::Vector2f GRID32x32_VIEW_COORDS = {410.0f, 310.0f};
-static const sf::Vector2f GRID64x64_VIEW_COORDS = {650.0f, 550.0f};
-
-//clickable area for the menu item (width, height)
-static const float WIDTH_OF_MENU_RECT = 145.f;
-static const float HEIGHT_OF_MENU_RECT = 50.f;
-
-//sf::Vector2f coordinates where the view will center for Main Menu
-static const sf::Vector2f MENU_VIEW_COORDS = {79.0f, 123.0f};
-
-//Positions of clickable area (x, y)
-static const float X_POSITION_OF_MENU_RECT = 5.f;
-static const float Y_POSITION_OF_MENU_RECT = 50.f;
-
-// Static view height
-static const float VIEW_HEIGHT = 512.0f;
-
-
+#include "Settings.h"
 
 
 int main() {
   sf::RenderWindow window(sf::VideoMode(800, 600), " Pixel Creation & Editing Software ");
-  sf::View view (sf::Vector2f(MENU_VIEW_COORDS), sf::Vector2f(0.0f, 0.0f));
+  sf::View view (sf::Vector2f(Settings::MENU_VIEW_COORDS), sf::Vector2f(0.0f, 0.0f));
 
   if (!ImGui::SFML::Init(window)) 
   {
@@ -63,10 +42,10 @@ int main() {
   // 3. activeGrid Sets the active grid to the corresponding grid size when the option is chosen
   std::vector<MenuOption> menuOptions = 
   {
-    { sf::FloatRect(X_POSITION_OF_MENU_RECT , Y_POSITION_OF_MENU_RECT         , WIDTH_OF_MENU_RECT , HEIGHT_OF_MENU_RECT), GRID8x8_VIEW_COORDS, Grid::grid8x8},
-    { sf::FloatRect(X_POSITION_OF_MENU_RECT , Y_POSITION_OF_MENU_RECT + 50.f  , WIDTH_OF_MENU_RECT , HEIGHT_OF_MENU_RECT), GRID16x16_VIEW_COORDS, Grid::grid16x16},
-    { sf::FloatRect(X_POSITION_OF_MENU_RECT , Y_POSITION_OF_MENU_RECT + 100.f , WIDTH_OF_MENU_RECT , HEIGHT_OF_MENU_RECT), GRID32x32_VIEW_COORDS, Grid::grid32x32},
-    { sf::FloatRect(X_POSITION_OF_MENU_RECT , Y_POSITION_OF_MENU_RECT + 150.f , WIDTH_OF_MENU_RECT , HEIGHT_OF_MENU_RECT), GRID64x64_VIEW_COORDS, Grid::grid64x64}
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT         , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID8x8_VIEW_COORDS, Grid::grid8x8},
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 50.f  , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID16x16_VIEW_COORDS, Grid::grid16x16},
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 100.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID32x32_VIEW_COORDS, Grid::grid32x32},
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 150.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID64x64_VIEW_COORDS, Grid::grid64x64}
   };
 
   //Bool to handle rendering
