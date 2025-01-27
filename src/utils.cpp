@@ -29,6 +29,8 @@ namespace utils
     {
         float aspectRatio = float(window.getSize().x) / float(window.getSize().y);
         view.setSize(Settings::VIEW_HEIGHT * aspectRatio, Settings::VIEW_HEIGHT);
+
+        std::cout << "\n" <<"View size (X) "<< view.getSize().x << "View size (Y)" << view.getSize().y << std::endl;
     }
 
     // Erase any previous set colour on appropriate cell 

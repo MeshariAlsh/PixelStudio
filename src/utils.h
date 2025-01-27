@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp> 
-#include <SFML/Graphics.hpp> 
 #include "Grid.h"
 #include "Grid.h"
 #include "Palette.h"

@@ -21,6 +21,9 @@ int main() {
   }
   // To track user mouse for inputs
   sf::Vector2f MousePosition;
+
+// Settinsg object
+   Settings manuel;
   
   // To Construct the Grid 
   Grid activeGrid = Grid(Grid::NONE);;
@@ -33,6 +36,7 @@ int main() {
   {
     sf::FloatRect boundarys;
     sf::Vector2f viewCenter;
+    sf::Vector2f sizeView;
     Grid setActiveGrid;
   };
 
@@ -42,10 +46,10 @@ int main() {
   // 3. activeGrid Sets the active grid to the corresponding grid size when the option is chosen
   std::vector<MenuOption> menuOptions = 
   {
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT         , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID8x8_VIEW_COORDS, Grid::grid8x8},
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 50.f  , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID16x16_VIEW_COORDS, Grid::grid16x16},
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 100.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID32x32_VIEW_COORDS, Grid::grid32x32},
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 150.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID64x64_VIEW_COORDS, Grid::grid64x64}
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT         , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID8x8_VIEW_COORDS,Settings::GRID8x8_VIEW_SIZE ,Grid::grid8x8},
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 50.f  , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID16x16_VIEW_COORDS, Settings::GRID16x16_VIEW_SIZE , Grid::grid16x16},
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 100.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID32x32_VIEW_COORDS, Settings::GRID32x32_VIEW_SIZE ,Grid::grid32x32},
+    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 150.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID64x64_VIEW_COORDS, Settings::GRID64x64_VIEW_SIZE ,Grid::grid64x64}
   };
 
   //Bool to handle rendering
@@ -90,6 +94,7 @@ int main() {
               
                //Handles Mouse position  
                utils::handleMousePosition(MousePosition,  window);
+               std::cout << " X) View size: " << view.getSize().x << "  Y) View size: " << view.getSize().y << std::endl; 
 
                if (isMainMenuRendering == true)
                {
@@ -98,6 +103,8 @@ int main() {
                   if (option.boundarys.contains(MousePosition)) 
                   {
                     view.setCenter(option.viewCenter); // Center the view on the selected grid
+                    view.setSize(option.sizeView);
+                    manuel.setViewHeight(option.sizeView.x);
                     activeGrid = option.setActiveGrid;
                     isMainMenuRendering = false;
                     isPaletteRendering = true;
@@ -105,6 +112,8 @@ int main() {
                   }
                 }
                }
+
+               std::cout << " X) View size:" << view.getSize().x << "/n" << "Y) View size:" << view.getSize().y ; 
 
               // For coloring, erasing, or copying the color of a single cell with a click 
                 if (palette.getIsEraserOn() == true)
@@ -162,10 +171,10 @@ int main() {
           ImGui::SetNextWindowSize(ImVec2(window.getSize().x, 50));  
 
           // Begin the ImGui panel
-          ImGui::Begin("Top Panel", nullptr, window_flags);
+          ImGui::Begin("Grid Canvas", nullptr, window_flags);
 
           // top panel text
-           ImGui::Text("Top Panel - ImGui + SFML");
+           ImGui::Text("Pixel House");
 
            if (ImGui::Button("Eraser"))
            {
@@ -187,15 +196,6 @@ int main() {
     
        // Render everything
        MainMenu.drawSelectedOption(window, isMainMenuRendering);
-       if (activeGrid.getGridSize() == 32)
-       {
-         view.setSize(1200.f, 800.f);
-         activeGrid.Draw(window); 
-       } else if (activeGrid.getGridSize() == 64)
-       {
-         view.setSize(2400.f, 1600.f);
-         activeGrid.Draw(window); 
-       } 
        activeGrid.Draw(window); 
        shadow.drawShadow(window);
        window.setView(view);

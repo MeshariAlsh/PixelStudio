@@ -24,6 +24,7 @@ set(SOURCE_FILES
     src/Shadow.cpp
     src/MainMenu.cpp
     src/utils.cpp
+    src/Settings.cpp
     src/imgui/imgui.cpp
     src/imgui/imgui_draw.cpp
     src/imgui/imgui_widgets.cpp
