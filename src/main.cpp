@@ -8,7 +8,7 @@
 #include "MainMenu.h"
 #include "utils.h"
 #include "Settings.h"
-
+#include <string>
 
 int main() {
   sf::RenderWindow window(sf::VideoMode(800, 600), " Pixel Creation & Editing Software ");
@@ -22,8 +22,8 @@ int main() {
   // To track user mouse for inputs
   sf::Vector2f MousePosition;
 
-// Settinsg object
-   Settings manuel;
+  // Settings object
+  Settings manuel;
   
   // To Construct the Grid 
   Grid activeGrid = Grid(Grid::NONE);;
@@ -32,29 +32,42 @@ int main() {
   Shadow shadow(false);
 
   // MainMenu  
-  struct MenuOption 
-  {
-    sf::FloatRect boundarys;
-    sf::Vector2f viewCenter;
-    sf::Vector2f sizeView;
-    Grid setActiveGrid;
-  };
-
+  
   // Initialize menu options for grid selection.
   // 1. sf::FloatRect clickable area for the menu item (x, y, width, height)
   // 2. sf::Vector2f coordinates where the view will center when the option is selected
   // 3. activeGrid Sets the active grid to the corresponding grid size when the option is chosen
-  std::vector<MenuOption> menuOptions = 
+  
+
+  //-----------------------------------------------------
+
+  //NEw menu
+  struct MenuGUI
   {
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT         , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID8x8_VIEW_COORDS,Settings::GRID8x8_VIEW_SIZE ,Grid::grid8x8},
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 50.f  , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID16x16_VIEW_COORDS, Settings::GRID16x16_VIEW_SIZE , Grid::grid16x16},
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 100.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID32x32_VIEW_COORDS, Settings::GRID32x32_VIEW_SIZE ,Grid::grid32x32},
-    { sf::FloatRect(Settings::X_POSITION_OF_MENU_RECT , Settings::Y_POSITION_OF_MENU_RECT + 150.f , Settings::WIDTH_OF_MENU_RECT , Settings::HEIGHT_OF_MENU_RECT), Settings::GRID64x64_VIEW_COORDS, Settings::GRID64x64_VIEW_SIZE ,Grid::grid64x64}
+    std::string title;
+    sf::Vector2f viewCenter;
+    sf::Vector2f sizeView;
+    sf::Vector2f buttonPos;
+    sf::Vector2f buttonSize;
+    Grid setActiveGrid;
   };
+
+  std::vector<MenuGUI> menuOptionsGUI = 
+    {
+      { "8x8", Settings::GRID8x8_VIEW_COORDS,Settings::GRID8x8_VIEW_SIZE ,  Settings::button_For_GRID8x8  , Settings::WIDTH_AND_HEIGHT_OF_MENU_BUTTON  ,Grid::grid8x8},
+      { "16x16", Settings::GRID16x16_VIEW_COORDS, Settings::GRID16x16_VIEW_SIZE ,  Settings::button_For_GRID16x16   ,  Settings::WIDTH_AND_HEIGHT_OF_MENU_BUTTON  ,Grid::grid16x16},
+      { "32x32", Settings::GRID32x32_VIEW_COORDS, Settings::GRID32x32_VIEW_SIZE ,  Settings::button_For_GRID32x32   , Settings::WIDTH_AND_HEIGHT_OF_MENU_BUTTON   ,Grid::grid32x32},
+      { "64x64", Settings::GRID64x64_VIEW_COORDS, Settings::GRID64x64_VIEW_SIZE , Settings::button_For_GRID64x64   , Settings::WIDTH_AND_HEIGHT_OF_MENU_BUTTON   ,Grid::grid64x64},
+      { "Custom", Settings::GRID64x64_VIEW_COORDS, Settings::GRID64x64_VIEW_SIZE ,  Settings::button_For_CustomGRID   , Settings::WIDTH_AND_HEIGHT_OF_MENU_BUTTON   ,Grid::grid64x64}
+    };
+
+
 
   //Bool to handle rendering
   bool isMainMenuRendering = true;
   MainMenu MainMenu; 
+
+
 
   //Bool to handle rendering
   bool isPaletteRendering = false;
@@ -93,28 +106,10 @@ int main() {
             {
               
                //Handles Mouse position  
+               // TODO come back to check if this servers a purpose
                utils::handleMousePosition(MousePosition,  window);
-               std::cout << " X) View size: " << view.getSize().x << "  Y) View size: " << view.getSize().y << std::endl; 
 
-               if (isMainMenuRendering == true)
-               {
-                 for (const auto& option : menuOptions) 
-                 {
-                  if (option.boundarys.contains(MousePosition)) 
-                  {
-                    view.setCenter(option.viewCenter); // Center the view on the selected grid
-                    view.setSize(option.sizeView);
-                    manuel.setViewHeight(option.sizeView.x);
-                    activeGrid = option.setActiveGrid;
-                    isMainMenuRendering = false;
-                    isPaletteRendering = true;
-                  break;  // Exit the loop after a selection
-                  }
-                }
-               }
-
-               std::cout << " X) View size:" << view.getSize().x << "/n" << "Y) View size:" << view.getSize().y ; 
-
+               
               // For coloring, erasing, or copying the color of a single cell with a click 
                 if (palette.getIsEraserOn() == true)
                 {
@@ -156,7 +151,40 @@ int main() {
 
        ImGui::SFML::Update(window, deltaClock.restart());
 
-       if (!isMainMenuRendering) {
+       //TODO remove magic numbers
+       ImGui::SetNextWindowPos(ImVec2(Settings::X_POSITION_OF_MENU_RECT, Settings::Y_POSITION_OF_MENU_RECT));  
+       ImGui::SetNextWindowSize(ImVec2(310, 310));    
+
+       ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar
+                                      | ImGuiWindowFlags_NoResize
+                                      | ImGuiWindowFlags_NoMove
+                                      | ImGuiWindowFlags_NoCollapse
+                                      | ImGuiWindowFlags_NoScrollbar
+                                      | ImGuiWindowFlags_NoSavedSettings;
+
+       if (isMainMenuRendering){
+
+        ImGui::Begin("Main Menu", nullptr, window_flags);
+          for (const auto& option : menuOptionsGUI) 
+                 {
+                  ImGui::SetCursorPos(ImVec2(option.buttonPos));
+                  if (ImGui::Button(option.title.c_str(), ImVec2(option.buttonSize))) 
+                  {
+                    view.setCenter(option.viewCenter); // Center the view on the selected grid
+                    view.setSize(option.sizeView);
+                    manuel.setViewHeight(option.sizeView.x);
+                    activeGrid = option.setActiveGrid;
+                    isMainMenuRendering = false;
+                    isPaletteRendering = true;
+                    
+                  break;  // Exit the loop after a selection
+                  }
+                 }
+        ImGui::End(); 
+       }
+
+
+       if (!isMainMenuRendering){
 
           // Define window flags for the top panel
           ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoTitleBar

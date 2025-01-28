@@ -30,8 +30,8 @@ public:
     static const sf::Vector2f GRID64x64_VIEW_COORDS;
 
 //clickable area for the menu item (width, height)
-    static const float WIDTH_OF_MENU_RECT;
-    static const float HEIGHT_OF_MENU_RECT;
+   
+    static const sf::Vector2f WIDTH_AND_HEIGHT_OF_MENU_BUTTON;
 
 //sf::Vector2f coordinates where the view will center for Main Menu
     static const sf::Vector2f MENU_VIEW_COORDS;
@@ -39,6 +39,15 @@ public:
 //Positions of clickable area (x, y)
     static const float X_POSITION_OF_MENU_RECT;
     static const float Y_POSITION_OF_MENU_RECT;
+
+//Positions of the button on the Imgui window
+
+static const sf::Vector2f button_For_GRID8x8;
+static const sf::Vector2f button_For_GRID16x16;
+static const sf::Vector2f button_For_GRID32x32;
+static const sf::Vector2f button_For_GRID64x64;
+static const sf::Vector2f button_For_CustomGRID;
+
 
 // Static view height
     static float VIEW_HEIGHT;
